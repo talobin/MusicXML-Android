@@ -20,7 +20,10 @@ import java.util.*
 object Parser {
     private val parsingEngine: TikXml
 
-    private val xmlString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><score-partwise version=\"1.1\"><identification><encoding><software>PlayScore</software></encoding></identification></score-partwise>"
+    private val TESTXMLSTRING =
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?><score-partwise version=\"1.1\"><identification><encoding><software>PlayScore</software></encoding></identification></score-partwise>"
+
+    private val TAG = Parser::class.java.simpleName;
 
     init {
         parsingEngine = TikXml.Builder().exceptionOnUnreadXml(false).build()
@@ -41,13 +44,14 @@ object Parser {
             Log.e("HAI", "Ex ception:" + e.message)
         }
 
-        parseString(xmlString)
+        parseString(TESTXMLSTRING)
 
     }
 
     /**
      * Parse MusicXML from a file
      * @property filePath the path to the xml file.
+     * @return An object that represents MusicXML data. Null if failed.
      */
     fun parseFile(filePath: String) {
         val file = File(filePath)
@@ -57,24 +61,34 @@ object Parser {
     /**
      * Parse MusicXML from a file
      * @property file the file that contains MusicXML data
+     * @return An object that represents MusicXML data. Null if failed.
      */
-    fun parseFile(file: File) {
+    fun parseFile(file: File): ScorePartWise? {
         try {
             val bufferedSource = file.source().buffer()
             val data = parsingEngine.read<ScorePartWise>(bufferedSource, ScorePartWise::class.java)
-            Log.d("Hai", "Got data$data")
+            Log.d(TAG, "Successfully parsed a file $data")
+            return data
         } catch (e: Exception) {
-            Log.e("HAI", "Exception:" + e.message)
+            Log.e(TAG, "Failed to parse file. Exception:" + e.message)
+            return null
         }
     }
 
-    fun parseString(xmlString: String) {
+    /**
+     * Parse MusicXML from a string
+     * @property xmlString string file that conforms MusicXML format
+     * @return An object that represents MusicXML data. Null if failed.
+     */
+    fun parseString(xmlString: String): ScorePartWise? {
         try {
             val buffer = Buffer().writeUtf8(xmlString)
             val data = parsingEngine.read<ScorePartWise>(buffer, ScorePartWise::class.java)
-            Log.d("Hai", "Got data$data")
+//            Log.d(TAG, "Successfully parsed a string $data")
+            return data
         } catch (e: Exception) {
-            Log.e("HAI", "Exception:" + e.message)
+//            Log.e(TAG, "Failed to parse file. Exception:" + e.message)
+            return null
         }
     }
     //endregion
@@ -91,7 +105,7 @@ object Parser {
      */
     private fun getResourcePath(resPath: String): String {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-                .absolutePath + ("/Camera/Scores" + "/" + "test.xml")
+            .absolutePath + ("/Camera/Scores" + "/" + "test.xml")
     }
 
 
