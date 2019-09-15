@@ -3,10 +3,10 @@ MusicXML Android Comprehensive Library
 Comprehensive ultility library for Android to work with MusicXML.
 The library include:
 
-* A parser to parse MusicXML file/string to an in-memory Object. (v0.0.1)
-* A scanner to scan any music sheet and turn it into MusicXML file/string(In Progress)
-* A converter to convert back and forth between MusicXML and Midi(In Progress)
-* A player to play MusicXML file/string/object and/or Midi file.(In Progress)
+* A **parser** to parse MusicXML file/string to an in-memory Object. (v0.0.1)
+* A **scanner** to scan any music sheet and turn it into MusicXML file/string(In Progress)
+* A **converter** to convert back and forth between MusicXML and Midi(In Progress)
+* A **player** to play MusicXML file/string/object and/or Midi file.(In Progress)
 
 
 ### What is MusicXML?
