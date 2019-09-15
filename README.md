@@ -1,4 +1,4 @@
-MusicXML
+MusicXML Android Comprehensive Library
 ========================
 Comprehensive ultility library for Android to work with MusicXML.
 The library include:
