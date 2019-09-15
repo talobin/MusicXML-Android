@@ -1,0 +1,2 @@
+include ':app',':Parser'
+rootProject.name='MusicXML'
