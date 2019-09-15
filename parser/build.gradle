@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply from: 'mvn-push.gradle'
 android {
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
@@ -8,13 +9,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
-        versionName "0.1"
-        //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        ndk {
-            // Specifies the ABI configurations of your native
-            // libraries Gradle should build and package with your APK.
-            abiFilters 'armeabi'
-        }
+        versionName "0.0.1"
     }
     buildTypes {
         release {
@@ -23,6 +18,9 @@ android {
         }
     }
 
+}
+tasks.withType(Javadoc).all {
+    enabled = false
 }
 
 dependencies {
