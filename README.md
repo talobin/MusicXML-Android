@@ -169,3 +169,6 @@ As of Sept/15/2019, the project uses:
 * com.tickaroo.tikxml:annotation:0.8.16-SNAPSHOT
 * com.tickaroo.tikxml:core:0.8.16-SNAPSHOT
 * com.tickaroo.tikxml:processor:0.8.16-SNAPSHOT
+* io.reactivex.rxjava2:rxkotlin:2.4.0
+* io.reactivex.rxjava2:rxjava:2.2.12
+* androidx.core:core-ktx:1.1.0
