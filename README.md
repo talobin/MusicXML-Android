@@ -4,7 +4,7 @@ Comprehensive ultility library for Android to work with MusicXML.
 The library include:
 
 * A **parser** to parse MusicXML file/string to an in-memory Object. (v0.0.1)
-* A **scanner** to scan any music sheet and turn it into MusicXML file/string(In Progress)
+* A **scanner** to scan any music sheet and turn it into MusicXML file/string(v0.0.1)
 * A **converter** to convert back and forth between MusicXML and Midi(In Progress)
 * A **player** to play MusicXML file/string/object and/or Midi file.(In Progress)
 
@@ -86,6 +86,77 @@ Parser.parseFile("path/to/your/file");
 //Or
 Parser.INSTANCE.parseFile(theFileItself);
 ```
+####Scan a music sheet image and extract MusicXML
+
+JAVA
+
+```java
+disposable = Scanner.INSTANCE.scanBitmap(this.bitmapFull, MainActivity.this)
+                                         .subscribeOn(Schedulers.newThread())
+                                         .doOnError(new Consumer<Throwable>() {
+                                             @Override
+                                             public void accept(Throwable throwable) throws Exception {
+                                                 if (throwable instanceof ConvertFailedException) {
+                                                     Log.e(TAG, "ConvertFailedException"+throwable);
+                                                 } else if (throwable instanceof TooManyStaffsException) {
+                                                     Log.e(TAG, "TooManyStaffsException"+throwable);
+                                                 } else if (throwable instanceof RScoreException) {
+                                                     Log.e(TAG, "RScoreException"+throwable);
+                                                 } else if (throwable instanceof NoNotesException) {
+                                                     Log.e(TAG, "NoNotesException"+throwable);
+                                                 }
+                                             }
+                                         })
+                                         .subscribe(new Consumer<ScanOutput>() {
+                                             @Override
+                                             public void accept(final ScanOutput output) throws Exception {
+                                                 runOnUiThread(new Runnable() {
+                                                     public void run() {
+                                                         if (output instanceof Progress) {
+                                                             if (((Progress) output).getCompletionPercent() == 100) {
+                                                                 Log.d(TAG, "ScanOutput:" + output);
+                                                             }
+                                                             Log.d(TAG, "Progress:" + ((Progress) output).getCompletionPercent());
+                                                         } else {
+                                                             Log.d(TAG, "Score:" + theScore);
+                                                         }
+                                                     }
+                                                 });
+                                             }
+                                         });
+
+```
+
+KOTLIN
+
+```kotlin
+disposable = Scanner.scanBitmap(bitmap, this@MainActivity)
+            .subscribeOn(Schedulers.newThread()).doOnError(io.reactivex.functions.Consumer {
+                fun accept(throwable: Throwable) {
+                    if (throwable is ConvertFailedException) {
+                        Log.e(TAG, "ConvertFailedException" + throwable)
+                    } else if (throwable is TooManyStaffsException) {
+                        Log.e(TAG, "TooManyStaffsException" + throwable)
+                    } else if (throwable is RScoreException) {
+                        Log.e(TAG, "RScoreException" + throwable)
+                    } else if (throwable is NoNotesException) {
+                        Log.e(TAG, "NoNotesException" + throwable)
+
+                    }
+                }
+            }).subscribe(io.reactivex.functions.Consumer {
+                fun accept(output: ScanOutput) {
+                    runOnUiThread {
+                        if (output is Progress) {
+                            Log.d(TAG, "ScanOutput:${output.completionPercent}")
+                        } else {
+                            Log.d(TAG, "Score:$output")
+                        }
+                    }
+                }
+            })
+```
+
 
 
 ### Contribution
