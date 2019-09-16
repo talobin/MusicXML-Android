@@ -1,2 +1,2 @@
-include ':app',':parser'
+include ':app',':parser',':scanner'
 rootProject.name='MusicXML'

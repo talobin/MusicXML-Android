@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/musicxml.iml" filepath="$PROJECT_DIR$/musicxml.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/parser/parser.iml" filepath="$PROJECT_DIR$/parser/parser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scanner/scanner.iml" filepath="$PROJECT_DIR$/scanner/scanner.iml" />
     </modules>
   </component>
 </project>
