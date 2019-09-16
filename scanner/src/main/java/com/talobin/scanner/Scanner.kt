@@ -20,7 +20,12 @@ object Scanner {
 
 
     init {
-
+        System.loadLibrary("stlport_shared")
+        if (BuildConfig.FLAVOR.equals("Lite")) {
+            System.loadLibrary("ReadScoreLib_Lite")
+        } else {
+            System.loadLibrary("ReadScoreLib")
+        }
     }
 
     fun scanBitmap(bm: Bitmap, context: Context): Observable<ScanOutput> {

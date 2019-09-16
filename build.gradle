@@ -9,8 +9,8 @@ buildscript {
         targetSdkVersion = 28
 
         // App dependencies
-        androidGradleVersion = '3.5.0'
-        kotlinVersion = '1.3.0'
+        androidGradleVersion = '3.2.1'
+        kotlinVersion = '1.3.50'
 
         junit = "junit:junit:4.12"
         autoValue ="com.google.auto.value:auto-value:1.3"
@@ -25,7 +25,6 @@ buildscript {
         mockWebserver = "com.squareup.okhttp3:mockwebserver:3.0.0"
         okio = "com.squareup.okio:okio:1.11.0"
     }
-    ext.kotlin_version = '1.3.50'
     repositories {
         google()
         jcenter()
@@ -37,7 +36,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
