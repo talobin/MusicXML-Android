@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val myDrawable = resources.getDrawable(R.drawable.testsheet)
         val bitmap = (myDrawable as BitmapDrawable).bitmap
         disposable = Scanner.scanBitmap(bitmap, this@MainActivity)
-            .subscribeOn(Schedulers.newThread()).doOnError(io.reactivex.functions.Consumer {
+            .subscribeOn(Schedulers.newThread()).doOnError {
                 fun accept(throwable: Throwable) {
                     if (throwable is ConvertFailedException) {
                         Log.e("Hai", "ConvertFailedException" + throwable)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
                 }
-            }).subscribe(io.reactivex.functions.Consumer {
+            }.subscribe {
                 fun accept(output: ScanOutput) {
                     runOnUiThread {
                         if (output is Progress) {
@@ -50,12 +50,8 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-            })
+            }
 
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }
