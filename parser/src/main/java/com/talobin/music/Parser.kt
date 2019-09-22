@@ -1,9 +1,9 @@
-package com.talobin.musicxml.parser
+package com.talobin.music
 
 import android.os.Environment
 import android.util.Log
-import com.talobin.musicxml.parser.model.Pitch
-import com.talobin.musicxml.parser.model.ScorePartWise
+import com.talobin.music.parser.model.Pitch
+import com.talobin.music.parser.model.ScorePartWise
 import com.tickaroo.tikxml.TikXml
 import okio.Buffer
 import okio.BufferedSource

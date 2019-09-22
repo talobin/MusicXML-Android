@@ -1,4 +1,4 @@
-package com.talobin.musicxml.parser.model
+package com.talobin.music.parser.model
 
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.PropertyElement
@@ -6,15 +6,15 @@ import com.tickaroo.tikxml.annotation.Xml
 
 @Xml
 data class Attributes(
-        @PropertyElement
+    @PropertyElement
         val divisions: String?,
 
-        @PropertyElement
+    @PropertyElement
         val staves: String?,
 
-        @Element
+    @Element
         val time: Time?,
 
-        @Element
+    @Element
         val clef: Clef?
 )

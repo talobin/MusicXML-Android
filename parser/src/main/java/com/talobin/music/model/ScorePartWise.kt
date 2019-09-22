@@ -1,4 +1,4 @@
-package com.talobin.musicxml.parser.model
+package com.talobin.music.parser.model
 
 import com.tickaroo.tikxml.annotation.Attribute
 import com.tickaroo.tikxml.annotation.Element
@@ -6,15 +6,15 @@ import com.tickaroo.tikxml.annotation.Xml
 
 @Xml
 data class ScorePartWise(
-        @Attribute
+    @Attribute
         var version: String?,
 
-        @Element
+    @Element
         var identification: Identification?,
 
-        @Element
+    @Element
         var partList: PartList?,
 
-        @Element
+    @Element
         var parts: List<Part>?
 )

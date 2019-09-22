@@ -1,4 +1,4 @@
-package com.talobin.musicxml.parser.model
+package com.talobin.music.parser.model
 
 import com.tickaroo.tikxml.annotation.Attribute
 import com.tickaroo.tikxml.annotation.Element
@@ -8,12 +8,12 @@ import com.tickaroo.tikxml.annotation.Xml
 @Xml
 data class Identification(
 
-        @Element
+    @Element
         val encoding: Encoding?,
 
-        @PropertyElement
+    @PropertyElement
         val creator: String?,
 
-        @Attribute(name = "type")
+    @Attribute(name = "type")
         val creatorType: String?
 )

@@ -1,4 +1,4 @@
-package com.talobin.musicxml.parser.model
+package com.talobin.music.parser.model
 
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.PropertyElement
@@ -6,38 +6,38 @@ import com.tickaroo.tikxml.annotation.Xml
 
 @Xml
 data class Note(
-        @Element
+    @Element
         val pitch: Pitch?,
 
-        @PropertyElement
+    @PropertyElement
         val duration: String?,
 
-        @PropertyElement
+    @PropertyElement
         val voice: String?,
 
-        @PropertyElement
+    @PropertyElement
         val type: String?,
-        @PropertyElement
+    @PropertyElement
         val stem: String?,
 
-        @PropertyElement
+    @PropertyElement
         val accidental: String?,
 
-        @PropertyElement
+    @PropertyElement
         val unpitched: String?,
 
-        @PropertyElement
+    @PropertyElement
         val staff: String?,
 
-        @PropertyElement
+    @PropertyElement
         val chord: String?,
 
-        @PropertyElement
+    @PropertyElement
         val rest: String?,
 
-        @Element
+    @Element
         val notation: Notation?,
 
-        @Element
+    @Element
         val beam: Beam?
 )

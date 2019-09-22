@@ -4,7 +4,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.talobin.musicxml.parser.Parser
+import com.talobin.music.Parser
 import com.talobin.scanner.Scanner
 import com.talobin.scanner.model.Progress
 import com.talobin.scanner.model.ScanOutput

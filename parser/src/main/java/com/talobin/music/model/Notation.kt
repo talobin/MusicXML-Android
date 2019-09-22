@@ -1,16 +1,16 @@
-package com.talobin.musicxml.parser.model
+package com.talobin.music.parser.model
 
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.Xml
 
 @Xml
 data class Notation(
-        @Element(name = "tied")
+    @Element(name = "tied")
         val tiedList: List<Tied>?,
 
-        @Element(name = "slur")
+    @Element(name = "slur")
         val slurList: List<Slur>?,
 
-        @Element
+    @Element
         val articulations: Articulations?
 )

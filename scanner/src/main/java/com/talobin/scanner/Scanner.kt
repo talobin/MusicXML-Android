@@ -21,13 +21,15 @@ object Scanner {
 
     init {
         System.loadLibrary("stlport_shared")
-        if (BuildConfig.FLAVOR.equals("Lite")) {
-            System.loadLibrary("ReadScoreLib_Lite")
-        } else {
-            System.loadLibrary("ReadScoreLib")
-        }
+        System.loadLibrary("ReadScoreLib")
+
     }
 
+    /**
+     * Scan a music sheet
+     * @property filePath the path to the xml file.
+     * @return An object that represents MusicXML data. Null if failed.
+     */
     fun scanBitmap(bm: Bitmap, context: Context): Observable<ScanOutput> {
         return Observable.create { observableEmitter ->
 
@@ -40,19 +42,21 @@ object Scanner {
                 val xmlFile = getXmlFileLocal(context)
                 midiFile.delete()
                 xmlFile.delete()
-                val rscore_opt = ConvertOptions("PlayScore", false, false)
-                val theScore = RScore.Convert(pixels,
-                        bitmapWidth,
-                        bitmapHeight,
-                        bm.getWidth(),
-                        RScore.Orientation.ROT0,
-                        {
-                            observableEmitter.onNext(Progress(it.progress_percent))
-                            true
-                        },
-                        midiFile,
-                        xmlFile,
-                        rscore_opt)
+                val rscore_opt = ConvertOptions("Talobin", false, false)
+                val theScore = RScore.Convert(
+                    pixels,
+                    bitmapWidth,
+                    bitmapHeight,
+                    bm.getWidth(),
+                    RScore.Orientation.ROT0,
+                    {
+                        observableEmitter.onNext(Progress(it.progress_percent))
+                        true
+                    },
+                    midiFile,
+                    xmlFile,
+                    rscore_opt
+                )
                 if (midiFile.exists()) {
                     observableEmitter.onNext(Progress(100))
 
@@ -71,11 +75,11 @@ object Scanner {
     }
 
 
-    fun getMidiFileLocal(context: Context): File {
+    private fun getMidiFileLocal(context: Context): File {
         return File(context.filesDir.toString() + "/currentMidi")
     }
 
-    fun getXmlFileLocal(context: Context): File {
+    private fun getXmlFileLocal(context: Context): File {
         return File(context.filesDir.toString() + "/currentXml")
     }
 

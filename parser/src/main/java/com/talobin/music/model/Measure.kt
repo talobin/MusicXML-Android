@@ -1,4 +1,4 @@
-package com.talobin.musicxml.parser.model
+package com.talobin.music.parser.model
 
 import com.tickaroo.tikxml.annotation.Attribute
 import com.tickaroo.tikxml.annotation.Element
@@ -6,15 +6,15 @@ import com.tickaroo.tikxml.annotation.Xml
 
 @Xml
 data class Measure(
-        @Attribute
+    @Attribute
         val number: String?,
-        @Attribute
+    @Attribute
         val width: String?,
 
-        @Element(name = "note")
+    @Element(name = "note")
         val noteList: List<Note>?,
 
-        @Element(name = "attributes")
+    @Element(name = "attributes")
         val attributesList: List<Attributes>?
 )
 
