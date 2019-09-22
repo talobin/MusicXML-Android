@@ -21,9 +21,11 @@ object Parser {
     private val parsingEngine: TikXml
 
     private val TESTXMLSTRING =
-        "<?xml version=\"1.0\" encoding=\"UTF-8\"?><score-partwise version=\"1.1\"><identification><encoding><software>PlayScore</software></encoding></identification></score-partwise>"
+        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><score-partwise version=\"1.1\"><!DOCTYPE score-partwise PUBLIC\n" +
+                "\"-//Recordare//DTD MusicXML 1.1 Partwise//EN\"\n" +
+                " \"http://www.musicxml.org/dtds/partwise.dtd\"><identification><encoding><software>PlayScore</software></encoding></identification></score-partwise>"
 
-    private val TAG = Parser::class.java.simpleName;
+    private val TAG = Parser::class.java.simpleName
 
     init {
         parsingEngine = TikXml.Builder().exceptionOnUnreadXml(false).build()
@@ -36,7 +38,7 @@ object Parser {
      */
     fun parseTestXML() {
         try {
-            val bufferedSource = sourceForFile("text.xml")
+            val bufferedSource = sourceForFile("test.xml")
             val data = parsingEngine.read<ScorePartWise>(bufferedSource, ScorePartWise::class.java)
             val pitches = extractPitchList(0, data)
             Log.d("Hai", "Got data$pitches")
@@ -44,7 +46,7 @@ object Parser {
             Log.e("HAI", "Ex ception:" + e.message)
         }
 
-        parseString(TESTXMLSTRING)
+//        parseString(TESTXMLSTRING)
 
     }
 
@@ -67,7 +69,7 @@ object Parser {
         try {
             val bufferedSource = file.source().buffer()
             val data = parsingEngine.read<ScorePartWise>(bufferedSource, ScorePartWise::class.java)
-            Log.d(TAG, "Successfully parsed a file $data")
+//            Log.d(TAG, "Successfully parsed a file $data")
             return data
         } catch (e: Exception) {
             Log.e(TAG, "Failed to parse file. Exception:" + e.message)
@@ -84,10 +86,10 @@ object Parser {
         try {
             val buffer = Buffer().writeUtf8(xmlString)
             val data = parsingEngine.read<ScorePartWise>(buffer, ScorePartWise::class.java)
-//            Log.d(TAG, "Successfully parsed a string $data")
+            Log.d(TAG, "Successfully parsed a string $data")
             return data
         } catch (e: Exception) {
-//            Log.e(TAG, "Failed to parse file. Exception:" + e.message)
+            Log.e(TAG, "Failed to parse String. Exception:" + e.message)
             return null
         }
     }
@@ -96,20 +98,20 @@ object Parser {
 
     //region Helper Functions
     @Throws(IOException::class)
-    private fun sourceForFile(filePath: String): BufferedSource {
-        return File(getResourcePath(filePath)).source().buffer()
+    private fun sourceForFile(fileName: String): BufferedSource {
+        return File(getResourcePath(fileName)).source().buffer()
     }
 
     /**
      * Get the resource path
      */
-    private fun getResourcePath(resPath: String): String {
+    private fun getResourcePath(fileName: String): String {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-            .absolutePath + ("/Camera/Scores" + "/" + "test.xml")
+            .absolutePath + ("/Camera/Scores" + "/" + fileName)
     }
 
 
-    private fun extractPitchList(partIndex: Int, scorePartWise: ScorePartWise): List<Pitch> {
+    fun extractPitchList(partIndex: Int, scorePartWise: ScorePartWise): List<Pitch> {
         val result = ArrayList<Pitch>()
         if (scorePartWise.parts != null && scorePartWise.parts!!.size > partIndex) {
             val (_, measureList) = scorePartWise.parts!![partIndex]
