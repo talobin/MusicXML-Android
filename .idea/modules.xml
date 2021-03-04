@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/musicxml.iml" filepath="$PROJECT_DIR$/musicxml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MusicXML.iml" filepath="$PROJECT_DIR$/.idea/modules/MusicXML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MusicXML.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MusicXML.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/parser/MusicXML.parser.iml" filepath="$PROJECT_DIR$/.idea/modules/parser/MusicXML.parser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scanner/MusicXML.scanner.iml" filepath="$PROJECT_DIR$/.idea/modules/scanner/MusicXML.scanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/musicxml.iml" filepath="$PROJECT_DIR$/musicxml.iml" />
       <module fileurl="file://$PROJECT_DIR$/parser/parser.iml" filepath="$PROJECT_DIR$/parser/parser.iml" />
       <module fileurl="file://$PROJECT_DIR$/scanner/scanner.iml" filepath="$PROJECT_DIR$/scanner/scanner.iml" />
     </modules>
